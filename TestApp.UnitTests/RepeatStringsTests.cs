@@ -24,9 +24,11 @@ public class RepeatStringsTests
     {
         // Arrange
         string[] input = new string[] { "hello" };
-        string expected = "hellohellohellohellohello";
+        string expected = "hellohellohellohellohello"; 
+
         // Act
         string result = RepeatStrings.Repeat(input);
+
         // Assert
         Assert.That (result, Is.EqualTo(expected));
     }
@@ -37,8 +39,10 @@ public class RepeatStringsTests
         // Arrange
         string[] input = new string[] { "abc", "cat", "go" };
         string expected = "abcabcabccatcatcatgogo";
+
         // Act
         string result = RepeatStrings.Repeat(input);
+
         // Assert
         Assert.That(result, Is.EqualTo(expected));
     }
