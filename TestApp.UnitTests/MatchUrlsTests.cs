@@ -14,37 +14,74 @@ public class MatchUrlsTests
         string text = "";
 
         // Act
+        List<string> result = MatchUrls.ExtractUrls(text);
 
         // Assert
+        Assert.That(result, Is.Empty);
+
     }
 
-    // TODO: finish the test
+    
     [Test]
     public void Test_ExtractUrls_NoUrlsInText_ReturnsEmptyList()
     {
         // Arrange
+        string text = "Text with no URLs";
 
         // Act
+        List<string> result = MatchUrls.ExtractUrls(text);
 
         // Assert
-        //Assert.That(result, Is.Empty);
+        Assert.That(result, Is.Empty);
     }
 
     [Test]
     public void Test_ExtractUrls_SingleUrlInText_ReturnsSingleUrl()
     {
-        // TODO: finish the test
+        // Arrange
+        string text = "URL: https://softuni.bg";
+        string expected = "https://softuni.bg";
+
+        // Act
+        List<string> result = MatchUrls.ExtractUrls(text);
+
+        // Assert
+        Assert.That(result[0], Is.EqualTo(expected));
+        
     }
+
 
     [Test]
     public void Test_ExtractUrls_MultipleUrlsInText_ReturnsAllUrls()
     {
-        // TODO: finish the test
-    }
+    // Arrange
+    string text = "This is text with one URL: https://softuni.bg, http://abv.bg and one more url https://www.yahoo.com/email#lesson-78195";
+    string firstExpectedURL = "https://softuni.bg";
+    string secondExpectedURL = "http://abv.bg";
+    string thirdExpectedURl = "https://www.yahoo.com";
+
+    // Act
+    List<string> result = MatchUrls.ExtractUrls(text);
+
+    // Assart
+    Assert.That(result[0], Is.EqualTo(firstExpectedURL), "The url in index 0 is not the expected");
+    Assert.That(result[1], Is.EqualTo(secondExpectedURL), "The url in index 1 is not the expected");
+    Assert.That(result[2], Is.EqualTo(thirdExpectedURl), "The url in index 2 is not the expected");
+    Assert.That(result.Count, Is.EqualTo(3), "There is more than three elements in the list.");
+     }
 
     [Test]
     public void Test_ExtractUrls_UrlsInQuotationMarks_ReturnsUrlsInQuotationMarks()
     {
-        // TODO: finish the test
-    }
+    // Arrange
+    string text = "This is text with one URL: \"https://softuni.bg\"";
+    string expectedURL = "https://softuni.bg";
+
+    // Act
+    List<string> result = MatchUrls.ExtractUrls(text);
+
+    // Assert
+    Assert.That(result[0], Is.EqualTo(expectedURL), "The URL is not the same.");
+    Assert.That(result.Count, Is.EqualTo(1), "There is more than one element in the list.");
+}
 }
