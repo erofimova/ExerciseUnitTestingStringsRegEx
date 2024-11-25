@@ -1,19 +1,20 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace TestApp.UnitTests;
 
 public class PatternTests
 {
-    // TODO: finish the test cases
-    //[TestCase()]
-    //[TestCase()]
-    //[TestCase()]
+  
+    [TestCase("hello", 3, "hElLohElLohElLo")]
+    [TestCase("ABCdef", 5, "aBcDeFaBcDeFaBcDeFaBcDeFaBcDeF")]
+    [TestCase("Evgeniya", 2, "eVgEnIyAeVgEnIyA")]
+
     public void Test_GeneratePatternedString_ValidInput_ReturnsExpectedResult(string input, 
         int repetitionFactor, string expected)
     {
-        // Arrange
+        // Arrange and Act
 
-        // Act
         string result = Pattern.GeneratePatternedString(input, repetitionFactor);
 
         // Assert
@@ -23,18 +24,34 @@ public class PatternTests
     [Test]
     public void Test_GeneratePatternedString_EmptyInput_ThrowsArgumentException()
     {
-        // TODO: finish the test
+        // Arrange
+        string input = string.Empty;
+        int repetitionFactor = 3;  
+
+        // Act and Assert
+        Assert.Throws<ArgumentException>(() => Pattern.GeneratePatternedString(input, repetitionFactor));
+
     }
 
     [Test]
     public void Test_GeneratePatternedString_NegativeRepetitionFactor_ThrowsArgumentException()
     {
-        // TODO: finish the test
+        // Arrange
+        string input = "Dark place";
+        int repetitionFactor = -2;
+
+        // Act and Assert
+        Assert.Throws<ArgumentException>(() => Pattern.GeneratePatternedString(input, repetitionFactor));
     }
 
     [Test]
     public void Test_GeneratePatternedString_ZeroRepetitionFactor_ThrowsArgumentException()
     {
-        // TODO: finish the test
+        // Arrange
+        string input = "Dark place";
+        int repetitionFactor = 0;
+
+        // Act and Assert
+        Assert.Throws<ArgumentException>(() => Pattern.GeneratePatternedString(input, repetitionFactor));
     }
 }
